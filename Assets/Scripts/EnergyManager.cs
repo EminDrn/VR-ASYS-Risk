@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnergyManager : MonoBehaviour
@@ -5,10 +6,17 @@ public class EnergyManager : MonoBehaviour
     public SwitchState[] switches;
    public GameObject electricEffect;
     public AudioSource audioSource;
-    [SerializeField] private GameObject colliderobject; 
+    [SerializeField] private GameObject colliderobject;
+    public GameObject secondUI;
+    public AudioSource electiricAudio;
 
 
     private bool wasAllOff = false; // önceki durumu takip et
+
+    private void Start()
+    {
+        secondUI.SetActive(false);
+    }
 
     void Update()
     {
@@ -30,6 +38,8 @@ public class EnergyManager : MonoBehaviour
         {
             audioSource.Play();
             colliderobject.SetActive(false);
+            secondUI.SetActive(true);
+            electiricAudio.Stop();
         }
 
         wasAllOff = allOff;

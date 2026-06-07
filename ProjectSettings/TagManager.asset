@@ -10,6 +10,15 @@ TagManager:
   - RightGlove
   - Boot
   - Boots
+  - QDSUIBackplateGradient
+  - QDSUIAccentColor
+  - QDSUITextInvertedColor
+  - QDSUISecondaryButton
+  - QDSUIPrimaryButton
+  - QDSUITextSecondaryInvertedColor
+  - QDSUISharedThemeColor
+  - QDSUIIcon
+  - Vinc
   layers:
   - Default
   - TransparentFX
