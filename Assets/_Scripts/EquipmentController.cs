@@ -29,12 +29,11 @@ public class EquipmentController : MonoBehaviour
             sharedAudioSource = gameObject.AddComponent<AudioSource>();
         }
     }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(zoneTag))
         {
-            Destroy(other.gameObject);
+            Destroy(other.gameObject); // Artık sahnedeki eldiveni yok eder, eli değil
             SetEquipped(zoneTag);
             CheckAllEquipped();
         }
@@ -57,7 +56,11 @@ public class EquipmentController : MonoBehaviour
         if (helmetEquipped && leftGloveEquipped && rightGloveEquipped &&
             bootsEquipped && vestEquipped)
         {
+            
             Debug.Log("Tüm ekipmanlar giyildi! Başarılı!");
+            TeleportController teleport = FindObjectOfType<TeleportController>();
+            if (teleport != null)
+                teleport.TeleportEnabled();
 
             if (sharedAudioSource != null && sharedSuccessSound != null)
                 sharedAudioSource.PlayOneShot(sharedSuccessSound);
