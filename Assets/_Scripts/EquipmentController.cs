@@ -17,23 +17,32 @@ public class EquipmentController : MonoBehaviour
     [Header("Ses (Sadece bir objeye at, diğerlerini boş bırak)")]
     public AudioClip successSound;
 
-    // Ses için static referans — ilk atanan ses tüm script'lerde geçerli olur
     private static AudioClip sharedSuccessSound;
     private static AudioSource sharedAudioSource;
+    private static bool allEquippedTriggered = false; // çift tetiklenmeyi önler
 
     void Start()
     {
+        // Sahne başında static değişkenleri sıfırla
+        helmetEquipped = false;
+        leftGloveEquipped = false;
+        rightGloveEquipped = false;
+        bootsEquipped = false;
+        vestEquipped = false;
+        allEquippedTriggered = false;
+
         if (successSound != null)
         {
             sharedSuccessSound = successSound;
             sharedAudioSource = gameObject.AddComponent<AudioSource>();
         }
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(zoneTag))
         {
-            Destroy(other.gameObject); // Artık sahnedeki eldiveni yok eder, eli değil
+            Destroy(other.gameObject);
             SetEquipped(zoneTag);
             CheckAllEquipped();
         }
@@ -53,16 +62,25 @@ public class EquipmentController : MonoBehaviour
 
     void CheckAllEquipped()
     {
+        if (allEquippedTriggered) return; // zaten tetiklendiyse bir daha girme
+
         if (helmetEquipped && leftGloveEquipped && rightGloveEquipped &&
             bootsEquipped && vestEquipped)
         {
-            
-            Debug.Log("Tüm ekipmanlar giyildi! Başarılı!");
-            TeleportController teleport = FindObjectOfType<TeleportController>();
-            if (teleport != null)
-                teleport.TeleportEnabled();
+            allEquippedTriggered = true; // bir daha tetiklenmesin
 
-            if (sharedAudioSource != null && sharedSuccessSound != null)
+            ScoreManager.Instance.PuanEkle(25);
+            Debug.Log("Tüm ekipmanlar giyildi! Başarılı!");
+
+            if (ManageScene.Instance.isExamScene == true)
+            {
+                TeleportController teleport = FindObjectOfType<TeleportController>();
+                if (teleport != null)
+                    teleport.TeleportEnabled();
+            }
+
+            if (sharedAudioSource != null && sharedSuccessSound != null && 
+                ManageScene.Instance.isExamScene == false)
                 sharedAudioSource.PlayOneShot(sharedSuccessSound);
         }
     }

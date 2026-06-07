@@ -10,9 +10,20 @@ public class WrongPlaceCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && EquipmentBoxColliderController.isSceneStarted == true)
+        if (other.CompareTag("Player") && EquipmentBoxColliderController.isSceneStarted == true && ManageScene.Instance.isExamScene == false)
         {
-           
+            if (gameObject.CompareTag("Vinc"))
+            {
+                ScoreManager.Instance.PuanDus(15);
+            }
+            if (gameObject.CompareTag("İskele"))
+            {
+                ScoreManager.Instance.PuanDus(15);
+            }
+            if (gameObject.CompareTag("Electiric"))
+            {
+                ScoreManager.Instance.PuanDus(25);
+            }
             wrongPlaceSound.Play();
         }
     }

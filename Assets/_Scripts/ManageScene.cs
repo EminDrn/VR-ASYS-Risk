@@ -3,6 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class ManageScene : MonoBehaviour
 {
+    public static ManageScene Instance { get; private set; }
+    [SerializeField] public bool isExamScene = false;
+
+    void Awake()
+    {
+        Instance = this;
+    }
     public void YenidenBaslat()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

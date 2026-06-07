@@ -9,7 +9,7 @@ public class EnergyManager : MonoBehaviour
     [SerializeField] private GameObject colliderobject;
     public GameObject secondUI;
     public AudioSource electiricAudio;
-
+    
 
     private bool wasAllOff = false; // önceki durumu takip et
 
@@ -36,10 +36,18 @@ public class EnergyManager : MonoBehaviour
         // Sadece durum değiştiğinde çal
         if (allOff && !wasAllOff)
         {
-            audioSource.Play();
             colliderobject.SetActive(false);
             secondUI.SetActive(true);
+            if (ManageScene.Instance.isExamScene == false)
+            {
+                audioSource.Play();
+
+            }
             electiricAudio.Stop();
+            if (ManageScene.Instance.isExamScene == true)
+            {
+                ScoreManager.Instance.GetScoreText();
+            }
         }
 
         wasAllOff = allOff;
