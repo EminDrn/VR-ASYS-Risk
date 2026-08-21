@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; }
 
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private int baslangicPuani = 65;
+    [SerializeField] private int baslangicPuani = 75;
     [SerializeField] private int maksPuan = 100;
     [SerializeField] private int minPuan = 0;
     public GameObject scoreTextGameObject; 

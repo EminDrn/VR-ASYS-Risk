@@ -69,19 +69,28 @@ public class EquipmentController : MonoBehaviour
         {
             allEquippedTriggered = true; // bir daha tetiklenmesin
 
-            ScoreManager.Instance.PuanEkle(25);
+            if (ScoreManager.Instance != null)
+                ScoreManager.Instance.PuanEkle(25);
+
             Debug.Log("Tüm ekipmanlar giyildi! Başarılı!");
 
-            if (ManageScene.Instance.isExamScene == true)
+            // Sahnede inaktif bile olsa TeleportController'ı bul ve aktifleştir
+            TeleportController teleport = FindObjectOfType<TeleportController>(true);
+            if (teleport != null)
             {
-                TeleportController teleport = FindObjectOfType<TeleportController>();
-                if (teleport != null)
-                    teleport.TeleportEnabled();
+                teleport.TeleportEnabled();
+                Debug.Log("Teleport başarıyla aktif edildi!");
+            }
+            else
+            {
+                Debug.LogWarning("[EquipmentController] TeleportController sahnede bulunamadı!");
             }
 
-            if (sharedAudioSource != null && sharedSuccessSound != null && 
-                ManageScene.Instance.isExamScene == false)
+            bool isExam = (ManageScene.Instance != null && ManageScene.Instance.isExamScene);
+            if (sharedAudioSource != null && sharedSuccessSound != null && !isExam)
+            {
                 sharedAudioSource.PlayOneShot(sharedSuccessSound);
+            }
         }
     }
 }

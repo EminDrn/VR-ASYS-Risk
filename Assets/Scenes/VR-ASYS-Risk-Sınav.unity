@@ -13542,7 +13542,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 15bfe23dc69e4bd479d6191a3ec5d579, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -81634,7 +81634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 5912584212283442679}
-  baslangicPuani: 0
+  baslangicPuani: 75
   maksPuan: 100
   minPuan: 0
   scoreTextGameObject: {fileID: 2260754179715115346}
@@ -121648,6 +121648,7 @@ MonoBehaviour:
   colliderobject: {fileID: 226762109}
   secondUI: {fileID: 357007698}
   electiricAudio: {fileID: 23323761}
+  scoreUI: {fileID: 2260754179715115346}
 --- !u!114 &3445979089509142195
 MonoBehaviour:
   m_ObjectHideFlags: 0
