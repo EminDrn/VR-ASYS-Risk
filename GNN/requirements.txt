@@ -1,0 +1,3 @@
+torch>=2.2
+# İsteğe bağlı (--onnx için):
+# onnx

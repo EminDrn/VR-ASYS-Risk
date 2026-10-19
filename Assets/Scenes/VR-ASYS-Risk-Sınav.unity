@@ -9582,7 +9582,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14.97094, y: -2.7778766, z: 32.433}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6951141, y: 1.221, z: 1.221}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 274303674}
@@ -22482,7 +22482,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 55
+  field of view: 55.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -58136,7 +58136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1409508090}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: UnTeleport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71866,6 +71866,118 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4631551510093068, guid: ee110d26c76e9be46b67a041c1f5fdb9, type: 3}
   m_PrefabInstance: {fileID: 1755392568}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1756979872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1756979875}
+  - component: {fileID: 1756979874}
+  - component: {fileID: 1756979873}
+  m_Layer: 0
+  m_Name: GNN
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1756979873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756979872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8387e914c4ac64cf98e9261c89a7c2c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riskPredictor: {fileID: 0}
+  trackedTarget: {fileID: 0}
+  electricZone: {fileID: 0}
+  craneBudget: 40
+  scaffoldBudget: 30
+  electricBudget: 40
+  entryShare: 0.4
+  exposureTimeConstant: 5
+  missingPpeMultiplier: 1.5
+  cautionPenalty: 0
+  updateInterval: 0.5
+  reentryCooldown: 3
+  warningSound: {fileID: 0}
+  showDebugLogs: 1
+--- !u!114 &1756979874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756979872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d5da584918b4a75901b1ec5f67986c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weightsJson: {fileID: 0}
+  graphJson: {fileID: 0}
+  siteArea: {fileID: 0}
+  graphSettings:
+    cellSize: 0.5
+    siteMargin: 25
+    cautionDistance: 2.5
+    hazardProbeDistance: 15
+    neighborRadius: 4
+    clearanceProbeDistance: 5
+    overheadProbeDistance: 15
+    dropProbeDistance: 1
+    bodyRadius: 0.25
+    maxSlope: 35
+    maxStep: 0.5
+    craneKeywords:
+    - crane
+    - vinc
+    - "vin\xE7"
+    - hook
+    - kanca
+    scaffoldKeywords:
+    - scaffold
+    - iskele
+    electricKeywords:
+    - electr
+    - elektr
+    - power box
+    - generator
+    - jenerat
+    - cable
+    - kablo
+    - switch
+    - "\u015Falter"
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    gridOffset: {x: 0, y: 0}
+  drawGizmos: 1
+  gizmoShowsDecision: 1
+  showDebugLogs: 1
+--- !u!4 &1756979875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756979872}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 86.33327, y: 2.1718445, z: 102.60557}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1757703399
 GameObject:
   m_ObjectHideFlags: 0
@@ -81634,10 +81746,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 5912584212283442679}
-  baslangicPuani: 75
+  baslangicPuani: 70
   maksPuan: 100
   minPuan: 0
   scoreTextGameObject: {fileID: 2260754179715115346}
+  guvenliEsigi: 75
+  ortaRiskEsigi: 50
+  riskliEsigi: 25
 --- !u!1001 &1965815127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -195225,3 +195340,4 @@ SceneRoots:
   - {fileID: 357007704}
   - {fileID: 5500104847611062154}
   - {fileID: 4976789056914494875}
+  - {fileID: 1756979875}

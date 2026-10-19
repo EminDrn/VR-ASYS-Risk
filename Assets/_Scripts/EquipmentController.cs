@@ -11,6 +11,9 @@ public class EquipmentController : MonoBehaviour
     public static bool bootsEquipped = false;
     public static bool vestEquipped = false;
 
+    /// <summary>Kişisel koruyucu donanımın hepsi giyildi mi (GNN puanlayıcı ceza çarpanı için kullanır).</summary>
+    public static bool AllEquipped => helmetEquipped && leftGloveEquipped && rightGloveEquipped && bootsEquipped && vestEquipped;
+
     [Header("Settings")]
     public string zoneTag;
 
@@ -70,7 +73,7 @@ public class EquipmentController : MonoBehaviour
             allEquippedTriggered = true; // bir daha tetiklenmesin
 
             if (ScoreManager.Instance != null)
-                ScoreManager.Instance.PuanEkle(25);
+                ScoreManager.Instance.PuanEkle(30);
 
             Debug.Log("Tüm ekipmanlar giyildi! Başarılı!");
 

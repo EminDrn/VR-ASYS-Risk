@@ -12,7 +12,8 @@ public class WrongPlaceCollider : MonoBehaviour
     {
         if (other.CompareTag("Player") && EquipmentBoxColliderController.isSceneStarted == true )
         {
-            if ( ManageScene.Instance.isExamScene == true)
+            // GNN puanlayıcı etkinse ceza risk haritasından verilir, kutu yalnızca eğitim etiketidir
+            if ( ManageScene.Instance.isExamScene == true && !GnnRiskScorer.IsScoring)
             {
             if (gameObject.CompareTag("Vinc"))
             {
